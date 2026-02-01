@@ -1,22 +1,28 @@
 import random
-from statroller import rollstat
+import inspect
+from statroller import rollstat, assignstats
+from classes import *
 
-def roll_class():
-    class_options = ["Fighter", "Rogue", "Paladin", "Wizard", "Sorcerer", "Bard", "Druid", "Cleric", "Warlock", "Monk", "Ranger", "Barbarian"]
-    return random.choice(class_options)
+class_options = [Fighter, Barbarian, Warlock, Wizard, Sorcerer, Bard, Druid, Cleric, Paladin, Monk, Rogue, Ranger]
+# Create random class instance
+player_class = random.choice(class_options)()
+primary_stat = player_class.return_primary()
+player_stats = assignstats(primary_stat)
+
 
 def roll_species():
     species_options = ["Human", "Dwarf", "Elf", "Tiefling", "Halfling", "Aasimar", "Dragonborn", "Goliath"]
     return random.choice(species_options)
+    
 
 def main():
-    print (f"Your characer: Level 1 {roll_species()} {roll_class()}")
-    print (f"Strength: {rollstat()}")
-    print (f"Dexterity: {rollstat()}")
-    print (f"Constitution: {rollstat()}")
-    print (f"Wisdom: {rollstat()}")
-    print (f"Intelligence: {rollstat()}")
-    print (f"Charisma: {rollstat()}")
+    print (f"Your characer: Level 1 {roll_species()} {player_class.return_name()}")
+    print (f"Strength: {player_stats['strength']}")
+    print (f"Dexterity: {player_stats['dexterity']}")
+    print (f"Constitution: {player_stats['constitution']}")
+    print (f"Wisdom: {player_stats['wisdom']}")
+    print (f"Intelligence: {player_stats['intelligence']}")
+    print (f"Charisma: {player_stats['charisma']}")
 
 
 
